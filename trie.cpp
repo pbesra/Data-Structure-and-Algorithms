@@ -110,7 +110,8 @@ class Trie{
 };
 
 int main(){
-
+	
+	// create Trie instance to access methods from Trie class
 	Trie* trie=new Trie();
 	trie->insert("abcbc");
 	trie->insert("abccc");
@@ -119,5 +120,6 @@ int main(){
 	trie->insert("mxsx");
 
 	cout << trie->search("mxsx") << endl;
+	trie->deleteTriedWord("abcbc");
 	return(0);
 }
