@@ -66,6 +66,47 @@ class Trie{
 			}
 			return(current->endOfCharacter);
 		}
+	// it will mark leaf endOfCharacter as false for independent word and delete all the nodes
+	// if the word shares characters with some other word, the it will mark leaf endOfCharacter as false
+	bool deleteWord(string word, TrieNode* current, int currentLen){
+			
+			if(currentLen==word.length()){
+				if(current->endOfCharacter){
+					current->endOfCharacter=false;
+				}
+				if(current->children.size()==0){
+					delete current;
+					current=NULL;
+					return(true);
+				}
+				return false;
+			}
+
+			char chr=word[currentLen];
+			TrieNode* node=current->children[chr];
+
+			if(node==NULL){
+				return false;
+			}
+			bool shouldDeleteCurrentChildren=deleteWord(word, node, currentLen+1);
+			if(shouldDeleteCurrentChildren){
+
+				current->children.erase(chr);
+				if(current->children.size()==0){
+					delete current;
+					current=NULL;
+					return(true);
+				}
+				
+				return false;
+			}
+			
+			
+			return false;
+		}
+		void deleteTriedWord(string word){ 
+			deleteWord(word,root, 0);
+		}
 };
 
 int main(){
