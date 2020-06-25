@@ -113,13 +113,18 @@ int main(){
 	
 	// create Trie instance to access methods from Trie class
 	Trie* trie=new Trie();
+	
+	// insert word into trie
 	trie->insert("abcbc");
 	trie->insert("abccc");
 	trie->insert("bcaca");
 	trie->insert("mcvx");
 	trie->insert("mxsx");
-
+	
+	// search word in trie, if 1, then word found, else word is not present in trie
 	cout << trie->search("mxsx") << endl;
+	
+	// delete word from trie
 	trie->deleteTriedWord("abcbc");
 	return(0);
 }
